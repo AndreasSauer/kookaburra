@@ -1,0 +1,11 @@
+FROM node:14-alpine
+
+COPY package.json package-lock.json ./
+COPY ./dist/apps/api ./
+COPY ./dist/apps/api/assets ./assets
+RUN npm ci -s --only=prod
+
+ARG COMMIT_HASH
+ENV COMMIT_HASH=${COMMIT_HASH}
+ENV NODE_PATH ./
+CMD ["node", "./main.js"]

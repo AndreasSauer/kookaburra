@@ -2,8 +2,8 @@ name: deploy-api
 
 on:
   push:
-    branches: [ "main" ]
-    
+    branches: ['main']
+
 jobs:
   bildapi:
     runs-on: ubuntu-latest
@@ -18,7 +18,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm build build:api
+      - run: npm run build:api
   docker:
     needs: bildapi
     runs-on: ubuntu-latest
@@ -35,6 +35,6 @@ jobs:
           file: ./Dockerfile.api
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:buildcache,mode=max
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/kookaburra.api:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/kookaburra.api:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/kookaburra.api:buildcache,mode=max
