@@ -22,17 +22,17 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo MONGODB=${{ secrets.MONGODB }} >> .env
+          echo MONGODB=test >> .env
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run test:api
-      - run: npm run test:app
-      - run: npm run lint:app
-      - run: npm run lint:api
-      - run: npm run build:app
-      - run: npm run build:api
+      # - run: npm run test:api
+      # - run: npm run test:app
+      # - run: npm run lint:app
+      # - run: npm run lint:api
+      # - run: npm run build:app
+      # - run: npm run build:api
       - run: npm run test:e2e
