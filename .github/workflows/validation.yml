@@ -19,13 +19,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: create env file
+        run: |
+          touch .env
+          echo MONGODB=${{ secrets.MONGODB }} >> .env
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-        env:
-          MONGODB: ${{ secrets.MONGODB }}
       - run: npm ci
       - run: npm run test:api
       - run: npm run test:app
