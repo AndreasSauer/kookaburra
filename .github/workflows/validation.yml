@@ -24,6 +24,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+        env:
+          MONGODB: ${{ secrets.MONGODB }}
       - run: npm ci
       - run: npm run test:api
       - run: npm run test:app
@@ -31,3 +33,4 @@ jobs:
       - run: npm run lint:api
       - run: npm run build:app
       - run: npm run build:api
+      - run: npm run test:e2e
