@@ -19,10 +19,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: create env file
-        run: |
-          touch .env
-          echo MONGODB=test >> .env
+      # - name: create env file
+      #   run: |
+      #     touch .env
+      #     echo MONGODB=${{ secrets.MONGODB }} >> .env
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_MONGODB: ${{ secrets.MONGODB }}
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
