@@ -1,0 +1,38 @@
+<div class="background">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Login</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="form">
+        <ion-item>
+          <ion-label>E-Mail</ion-label>
+          <ion-input
+            data-testid="mail-input"
+            id="mail-input"
+            formControlName="mail"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Passwort</ion-label>
+          <ion-input
+            data-testid="password-input"
+            id="password-input"
+            type="password"
+            formControlName="password"
+          ></ion-input>
+        </ion-item>
+        <div class="button-wrapper">
+          <ion-button
+            data-testid="login-button"
+            type="submit"
+            color="primary"
+            (click)="login()"
+            [disabled]="form.invalid"
+            >Login</ion-button
+          >
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</div>
