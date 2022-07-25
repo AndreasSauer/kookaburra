@@ -7,10 +7,10 @@ import { MongoDBUserRepository } from './app/domain/user/user.repository';
 import server from './server';
 
 dotenv.config();
+
 const MONGODB = env.get('MONGODB').required().asString();
 
 (async function () {
-  console.log(MONGODB);
   const mongoClient = await new MongoClient(MONGODB).connect();
   server(
     {

@@ -19,10 +19,20 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build:api
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v3
+        with:
+          name: api
+          path: ./dist/apps/api
   docker:
     needs: bildapi
     runs-on: ubuntu-latest
     steps:
+      - name: Download artifiact
+        uses: actions/download-artifact@v3
+        with:
+          name: api
+          path: ./dist/apps/api
       - name: Check out the repo
         uses: actions/checkout@v3
       - name: Log in to Docker Hub
